@@ -123,6 +123,10 @@ function build (schema, options) {
     code = uglifyCode(code)
   }
 
+  if (options.debug) {
+    console.log(code)
+  }
+
   var dependencies = []
   var dependenciesName = []
   if (hasAnyOf(schema) || hasSchemaSomeIf) {
