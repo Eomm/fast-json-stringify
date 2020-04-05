@@ -195,7 +195,7 @@ test('render a nested object in a string when type is date-format as ISOString',
   t.ok(validate(JSON.parse(output)), 'valid schema')
 })
 
-test('render a null date in a string as JSON', (t) => {
+test('render a null date in a string as JSON - array of types', (t) => {
   t.plan(2)
 
   const schema = {
@@ -213,6 +213,48 @@ test('render a null date in a string as JSON', (t) => {
   const stringify = build(schema)
   const output = stringify(toStringify)
 
+  t.equal(output, '{"updatedAt":""}')
+  t.notOk(validate(JSON.parse(output)), 'an empty string is not a date-time format')
+})
+
+test('render a null date in a string as JSON string type', (t) => {
+  t.plan(2)
+
+  const schema = {
+    type: 'object',
+    properties: {
+      updatedAt: {
+        type: 'string'
+      }
+    }
+  }
+  const toStringify = { updatedAt: null }
+
+  const validate = validator(schema)
+  const stringify = build(schema)
+  const output = stringify(toStringify)
+
+  t.equal(output, '{"updatedAt":""}')
+  t.ok(validate(JSON.parse(output)), 'valid schema')
+})
+
+test('render a nullable date in a string as JSON', (t) => {
+  t.plan(2)
+
+  const schema = {
+    type: 'object',
+    properties: {
+      updatedAt: {
+        type: ['string', 'null']
+      }
+    }
+  }
+  const toStringify = { updatedAt: null }
+
+  const validate = validator(schema)
+  const stringify = build(schema)
+  const output = stringify(toStringify)
+
   t.equal(output, '{"updatedAt":null}')
-  t.notOk(validate(JSON.parse(output)), 'null in a string is an invalid schema')
+  t.ok(validate(JSON.parse(output)), 'valid schema')
 })
