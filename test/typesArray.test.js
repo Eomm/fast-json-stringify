@@ -277,7 +277,6 @@ test('object with possibly null array of multiple types', (t) => {
     })
     t.is(value, '{"arrayOfStringsAndNumbers":null}')
   } catch (e) {
-    console.log(e)
     t.fail()
   }
 
@@ -287,7 +286,6 @@ test('object with possibly null array of multiple types', (t) => {
     })
     t.is(value, '{"arrayOfStringsAndNumbers":["string1","string2"]}')
   } catch (e) {
-    console.log(e)
     t.fail()
   }
 
@@ -349,7 +347,6 @@ test('object with tuple of multiple types', (t) => {
     })
     t.is(value, '{"fixedTupleOfStringsAndNumbers":["string1",42,7]}')
   } catch (e) {
-    console.log(e)
     t.fail()
   }
 
@@ -359,7 +356,6 @@ test('object with tuple of multiple types', (t) => {
     })
     t.is(value, '{"fixedTupleOfStringsAndNumbers":["string1",42,"string2"]}')
   } catch (e) {
-    console.log(e)
     t.fail()
   }
 })
@@ -396,7 +392,6 @@ test('object with anyOf and multiple types', (t) => {
     })
     t.is(value, '{"objectOrBoolean":{"stringOrNumber":"string"}}')
   } catch (e) {
-    console.log(e)
     t.fail()
   }
 
